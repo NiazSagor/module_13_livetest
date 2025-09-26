@@ -23,35 +23,6 @@ class _ContactListScreenState extends State<ContactListScreen> {
     }
   }
 
-  void _showDeleteConfirmationDialog(int index) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text("Confirmation"),
-          content: const Text("Are you sure for Delete?"),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.cancel, color: Colors.grey),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
-              onPressed: () {
-                setState(() {
-                  _contacts.removeAt(index);
-                });
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   Widget _buildContactItem(int index) {
     final contact = _contacts[index];
     return Container(
@@ -70,7 +41,6 @@ class _ContactListScreenState extends State<ContactListScreen> {
           icon: const Icon(Icons.call, color: Colors.blue),
           onPressed: () {},
         ),
-        onLongPress: () => _showDeleteConfirmationDialog(index),
       ),
     );
   }
